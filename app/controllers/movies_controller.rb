@@ -21,6 +21,8 @@ class MoviesController < ApplicationController
     if params[:ratings]
       @selected_ratings = params[:ratings].keys
       @movies = Movie.with_ratings(params[:ratings].keys)
+    else
+      @selected_ratings = Movie.all_ratings
     end
       
     
