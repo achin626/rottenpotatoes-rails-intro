@@ -6,7 +6,7 @@
 <table class="table table-striped col-md-12" id="movies">
   <thead>
     <tr>
-      <th><%= link_to "Movie Title", movies_path({sort_by: 'title'}), id: "title_header", class: "bg-warning" %></th>
+      <th><%= link_to "Movie Title", movies_path({sort_by: 'title'}), id: "title_header", class:('bg-warning hilite' if @sort_by == 'title') %></th>
       <th>Rating</th>
       <th>Release Date</th>
       <th>More Info</th>
