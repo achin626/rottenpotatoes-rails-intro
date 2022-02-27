@@ -21,7 +21,7 @@
     <tr>
       <th><%= link_to "Movie Title", movies_path({sort_by: 'title'}), id: "title_header", class:('bg-warning hilite' if @sort_by == 'title') %></th>
       <th>Rating</th>
-      <th><%= link_to "Release Date", movies_path({sort_by: 'release date'}), id: "release_date_header", class:('bg-warning hilite' if @sort_by == 'release date') %></th>
+      <th><%= link_to "Release Date", movies_path({sort_by: 'release_date'}), id: "release_date_header", class:('bg-warning hilite' if @sort_by == 'release date') %></th>
       <th>More Info</th>
     </tr>
   </thead>
