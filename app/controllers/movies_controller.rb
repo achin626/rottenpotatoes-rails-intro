@@ -12,7 +12,11 @@ class MoviesController < ApplicationController
     @selected_ratings = params[:selected_ratings]
     
     if !params[:selected_ratings] || !params[:sort_by]
-      @sort_by = params[:sort_by] || session['sort_by'] || 'id'
+      if @sort_by == session['sort_by']
+        @sort_by = 'id'
+      else
+        @sort_by = params[:sort_by] || session['sort_by'] || 'id'
+      end
       @selected_ratings = params[:ratings]&.keys || session['selected_ratings'] || Movie.all_ratings
       redirect_to movies_path({sort_by: @sort_by, selected_ratings: @selected_ratings})
     end
