@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+.hilite {
+    width: 100%;
+    height: 100%;
+}
