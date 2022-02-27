@@ -19,7 +19,13 @@ class MoviesController < ApplicationController
         @selected_ratings = Movie.all_ratings
       end
     else 
-      @movies = Movie.all
+      if params[:ratings]
+        @selected_ratings = params[:ratings].keys
+        @movies = Movie.with_ratings(params[:ratings].keys)
+      else
+        @selected_ratings = Movie.all_ratings
+        @movies = Movie.all
+      end
     end
       
     session['sort_by'] = @sort_by
