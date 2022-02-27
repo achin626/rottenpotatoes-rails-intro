@@ -9,6 +9,13 @@ class MoviesController < ApplicationController
   def index
     @sort_by = params[:sort_by]
     @all_ratings = Movie.all_ratings
+    @selected_ratings = params[:selected_ratings]
+    
+    if !params[:ratings] || !params[:sort_by]
+      @sort_by = params[:sort_by] || session['sort_by'] || 'id'
+      @selected_ratings = params[:ratings].keys || session['selected_ratings'] || Movie.all_ratings
+      redirect_to movies_path({sort_by: @sort_by, selected_ratings: @selected_ratings})
+    end
     
     if @sort_by
       if session['selected_ratings']
