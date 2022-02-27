@@ -11,7 +11,7 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.all_ratings
     
     if @sort_by == 'title'
-      @movies = Movie.order(@sort_by)
+      @movies = Movie.order(sort_by)
     elsif @sort_by == 'release date'
       @movies = Movie.order(:release_date)
     else 
