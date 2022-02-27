@@ -11,9 +11,9 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.all_ratings
     
     if @sort_by == 'title'
-      @movies = Movie.order(:title)
+      @movies = Movie.order(title)
     elsif @sort_by == 'release date'
-      @movies = Movie.order(:release_date)
+      @movies = Movie.order(release_date)
     else 
       @movies = Movie.all
     end
@@ -25,7 +25,7 @@ class MoviesController < ApplicationController
       @selected_ratings = Movie.all_ratings
     end
       
-    
+    session[]
   end
 
   def new
