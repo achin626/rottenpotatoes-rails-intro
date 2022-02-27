@@ -19,6 +19,7 @@ class MoviesController < ApplicationController
     end
     
     if params[:ratings]
+      @selected_ratings = params[:ratings].keys
       @movies = Movie.with_ratings(params[:ratings].keys)
     end
       
