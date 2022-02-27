@@ -9,7 +9,7 @@ class MoviesController < ApplicationController
   def index
     @sort_by = params[:sort_by]
     @all_ratings = Movie.all_ratings
-    @selected_ratings = params[:selected_ratings]
+    @selected_ratings = params[:ratings].keys
     
     if !params[:ratings] || !params[:sort_by]
       @sort_by = params[:sort_by] || session['sort_by'] || 'id'
@@ -18,7 +18,7 @@ class MoviesController < ApplicationController
     end
     
     @sort_by = params[:sort_by] || session['sort_by'] || 'id'
-    @selected_ratings = params[:ratings].keys || session['selected_ratings'] || Movie.all_ratings
+    #@selected_ratings = params[:ratings].keys || session['selected_ratings'] || Movie.all_ratings
     @movies = Movie.with_ratings(@selected_ratings).order(@sort_by)
     
     # if @sort_by
