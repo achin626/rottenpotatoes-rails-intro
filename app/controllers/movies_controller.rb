@@ -9,7 +9,7 @@ class MoviesController < ApplicationController
   def index
     @sort_by = params[:sort_by] || session['sort_by'] || 'id'
     @all_ratings = Movie.all_ratings
-    @selected_ratings = params[:ratings].keys || session['selected_ratings'] || Movie.all_ratings
+    @selected_ratings = params[:ratings].keys || Movie.all_ratings
     
     # if !params[:ratings] || !params[:sort_by]
     #   @sort_by = params[:sort_by] || session['sort_by'] || 'id'
