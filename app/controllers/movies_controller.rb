@@ -11,9 +11,9 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.all_ratings
     
     if @sort_by
-      if params[:ratings]
-        @selected_ratings = params[:ratings].keys
-        @movies = Movie.with_ratings(params[:ratings].keys).order(@sort_by)
+      if session['selected_ratings']
+        @selected_ratings = session['selected_ratings']
+        @movies = Movie.with_ratings(@selected_ratings).order(@sort_by)
       else
         @movies = Movie.order(@sort_by)
         @selected_ratings = Movie.all_ratings
