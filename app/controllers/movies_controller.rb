@@ -12,35 +12,20 @@ class MoviesController < ApplicationController
     @selected_ratings = params[:selected_ratings]
     
     if !params[:selected_ratings] || !params[:sort_by]
+      # If already sorted by a column, clicking on that column will then sort by id
       if @sort_by == session['sort_by']
         @sort_by = 'id'
       else
         @sort_by = params[:sort_by] || session['sort_by'] || 'id'
       end
+      
       @selected_ratings = params[:ratings]&.keys || session['selected_ratings'] || Movie.all_ratings
+      
       redirect_to movies_path({sort_by: @sort_by, selected_ratings: @selected_ratings})
     end
     
     @movies = Movie.with_ratings(@selected_ratings).order(@sort_by)
     
-    # if @sort_by
-    #   if session['selected_ratings']
-    #     @selected_ratings = session['selected_ratings']
-    #     @movies = Movie.with_ratings(@selected_ratings).order(@sort_by)
-    #   else
-    #     @movies = Movie.order(@sort_by)
-    #     @selected_ratings = Movie.all_ratings
-    #   end
-    # else 
-    #   if params[:ratings]
-    #     @selected_ratings = params[:ratings].keys
-    #     @movies = Movie.with_ratings(params[:ratings].keys)
-    #   else
-    #     @selected_ratings = Movie.all_ratings
-    #     @movies = Movie.all
-    #   end
-    # end
-      
     session['sort_by'] = @sort_by
     session['selected_ratings'] = @selected_ratings
   end
